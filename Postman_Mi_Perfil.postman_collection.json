@@ -1,0 +1,426 @@
+{
+    "info": {
+        "name": "VITÁN · Mi perfil ",
+        "description": "Pruebas de ver_perfil.php, modificar_perfil.php y cambiar_contrasena.php. Cambia la variable base_url según dónde estén los PHP (XAMPP local u hosting). Todas las respuestas son { exito: true | false, mensaje } y además perfil (ver y modificar) o campo (error de un dato). Los errores de validación regresan HTTP 200, como las APIs del profe; solo un error del servidor regresa 500. Cada petición trae sus verificaciones en la pestaña Tests: córrela completa con Run collection y en orden (la 8 regresa la contraseña original que cambia la 7).",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost/vitan_api"
+        }
+    ],
+    "event": [
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "// Verificaciones que aplican a TODAS las peticiones",
+                    "pm.test(\"Responde HTTP 200\", function () { pm.response.to.have.status(200); });",
+                    "pm.test(\"Formato del equipo: exito (boolean) y mensaje (texto)\", function () {",
+                    "    const json = pm.response.json();",
+                    "    pm.expect(json.exito).to.be.a(\"boolean\");",
+                    "    pm.expect(json.mensaje).to.be.a(\"string\").and.not.empty;",
+                    "    pm.expect(json).to.not.have.property(\"status\");",
+                    "    pm.expect(json).to.not.have.property(\"data\");",
+                    "});"
+                ]
+            }
+        }
+    ],
+    "item": [
+        {
+            "name": "1. Ver perfil (exito true)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es true\", function () { pm.expect(json.exito).to.eql(true); });",
+                            "pm.test(\"Trae el perfil con sus datos y tipos\", function () {",
+                            "    pm.expect(json.perfil).to.be.an(\"object\");",
+                            "    pm.expect(json.perfil.id_usuario).to.eql(3);",
+                            "    pm.expect(json.perfil.id_rol).to.be.a(\"number\");",
+                            "    pm.expect(json.perfil.favorito).to.be.a(\"boolean\");",
+                            "    pm.expect(json.perfil).to.include.keys(\"rol\", \"nombre\", \"ap\", \"am\", \"correo\", \"telefono\", \"calle\", \"cp\", \"colonia\", \"ciudad\");",
+                            "});",
+                            "pm.test(\"Nunca regresa la contraseña\", function () { pm.expect(json.perfil).to.not.have.property(\"contrasena\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{base_url}}/ver_perfil.php?id_usuario=3",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "ver_perfil.php"
+                    ],
+                    "query": [
+                        {
+                            "key": "id_usuario",
+                            "value": "3"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "2. Ver perfil de usuario que no existe (exito false)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es false\", function () { pm.expect(json.exito).to.eql(false); });",
+                            "pm.test(\"Mensaje: El usuario no existe\", function () { pm.expect(json.mensaje).to.eql(\"El usuario no existe\"); });",
+                            "pm.test(\"No trae perfil ni campo\", function () { pm.expect(json).to.not.have.any.keys(\"perfil\", \"campo\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{base_url}}/ver_perfil.php?id_usuario=99",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "ver_perfil.php"
+                    ],
+                    "query": [
+                        {
+                            "key": "id_usuario",
+                            "value": "99"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "3. Modificar teléfono y domicilio (exito true, «Datos guardados»)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es true\", function () { pm.expect(json.exito).to.eql(true); });",
+                            "pm.test(\"Mensaje: Datos guardados\", function () { pm.expect(json.mensaje).to.eql(\"Datos guardados\"); });",
+                            "pm.test(\"El perfil regresa con los datos nuevos\", function () {",
+                            "    pm.expect(json.perfil.telefono).to.eql(\"7711234567\"); // se guardan solo los dígitos",
+                            "    pm.expect(json.perfil.calle).to.eql(\"Calle Morelos 45\");",
+                            "    pm.expect(json.perfil.cp).to.eql(\"43000\");",
+                            "    pm.expect(json.perfil.colonia).to.eql(\"Centro\");",
+                            "    pm.expect(json.perfil.ciudad).to.eql(\"Huejutla de Reyes\");",
+                            "});"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"telefono\": \"771 123 4567\",\n  \"calle\": \"Calle Morelos 45\",\n  \"cp\": \"43000\",\n  \"colonia\": \"Centro\",\n  \"ciudad\": \"Huejutla de Reyes\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/modificar_perfil.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "modificar_perfil.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "4. Modificar con C.P. inválido (exito false, campo cp)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es false\", function () { pm.expect(json.exito).to.eql(false); });",
+                            "pm.test(\"Mensaje: El código postal debe tener 5 dígitos\", function () { pm.expect(json.mensaje).to.eql(\"El código postal debe tener 5 dígitos\"); });",
+                            "pm.test(\"Marca el campo cp\", function () { pm.expect(json.campo).to.eql(\"cp\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"telefono\": \"7711234567\",\n  \"cp\": \"430\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/modificar_perfil.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "modificar_perfil.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "5. Modificar con teléfono inválido (exito false, campo telefono)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es false\", function () { pm.expect(json.exito).to.eql(false); });",
+                            "pm.test(\"Mensaje: El teléfono debe tener 10 dígitos\", function () { pm.expect(json.mensaje).to.eql(\"El teléfono debe tener 10 dígitos\"); });",
+                            "pm.test(\"Marca el campo telefono\", function () { pm.expect(json.campo).to.eql(\"telefono\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"telefono\": \"77112\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/modificar_perfil.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "modificar_perfil.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "6. Modificar usuario que no existe (exito false)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es false\", function () { pm.expect(json.exito).to.eql(false); });",
+                            "pm.test(\"Mensaje: El usuario no existe\", function () { pm.expect(json.mensaje).to.eql(\"El usuario no existe\"); });",
+                            "pm.test(\"No trae perfil ni campo\", function () { pm.expect(json).to.not.have.any.keys(\"perfil\", \"campo\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 99,\n  \"telefono\": \"7711234567\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/modificar_perfil.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "modificar_perfil.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "7. Cambiar contraseña (exito true)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es true\", function () { pm.expect(json.exito).to.eql(true); });",
+                            "pm.test(\"Mensaje: Contraseña actualizada correctamente\", function () { pm.expect(json.mensaje).to.eql(\"Contraseña actualizada correctamente\"); });",
+                            "pm.test(\"Solo trae exito y mensaje\", function () { pm.expect(Object.keys(json)).to.have.members([\"exito\", \"mensaje\"]); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"contrasena_actual\": \"Cliente123\",\n  \"contrasena_nueva\": \"Nueva2026\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/cambiar_contrasena.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "cambiar_contrasena.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "8. Regresar a la contraseña original (exito true)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es true (vuelve a ser Cliente123)\", function () { pm.expect(json.exito).to.eql(true); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"contrasena_actual\": \"Nueva2026\",\n  \"contrasena_nueva\": \"Cliente123\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/cambiar_contrasena.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "cambiar_contrasena.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "9. Cambiar con contraseña actual incorrecta (exito false)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es false\", function () { pm.expect(json.exito).to.eql(false); });",
+                            "pm.test(\"Mensaje: La contraseña actual es incorrecta\", function () { pm.expect(json.mensaje).to.eql(\"La contraseña actual es incorrecta\"); });",
+                            "pm.test(\"No trae perfil ni campo\", function () { pm.expect(json).to.not.have.any.keys(\"perfil\", \"campo\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"contrasena_actual\": \"Equivocada1\",\n  \"contrasena_nueva\": \"Nueva2026\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/cambiar_contrasena.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "cambiar_contrasena.php"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "10. Cambiar con contraseña nueva corta (exito false)",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                            "const json = pm.response.json();",
+                            "pm.test(\"exito es false\", function () { pm.expect(json.exito).to.eql(false); });",
+                            "pm.test(\"Mensaje: La nueva contraseña debe tener al menos 8 caracteres\", function () { pm.expect(json.mensaje).to.eql(\"La nueva contraseña debe tener al menos 8 caracteres\"); });",
+                            "pm.test(\"No trae perfil ni campo\", function () { pm.expect(json).to.not.have.any.keys(\"perfil\", \"campo\"); });"
+                        ]
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"id_usuario\": 3,\n  \"contrasena_actual\": \"Cliente123\",\n  \"contrasena_nueva\": \"corta\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/cambiar_contrasena.php",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "cambiar_contrasena.php"
+                    ]
+                }
+            }
+        }
+    ]
+}
