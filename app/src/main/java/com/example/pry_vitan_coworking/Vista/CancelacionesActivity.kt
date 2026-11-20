@@ -49,7 +49,7 @@ class CancelacionesActivity : AppCompatActivity() {
         btnCerrarSesion.setOnClickListener(this::ejecutarCerrarSesion)
 
         //barra inferior del admin
-        bnvAdmin.selectedItemId = R.id.menuCancelaciones
+        bnvAdmin.selectedItemId = R.id.nav_cancelaciones
         bnvAdmin.setOnItemSelectedListener(this::ejecutarCambiarPestana)
 
         //inicializar presentador
@@ -76,11 +76,11 @@ class CancelacionesActivity : AppCompatActivity() {
     //pendiente abrir Reservas y Usuarios cuando existan
     fun ejecutarCambiarPestana(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menuReservas -> {
+            R.id.nav_reservas -> {
                 Toast.makeText(this, "Reservas (pendiente)", Toast.LENGTH_SHORT).show()
                 return false
             }
-            R.id.menuUsuarios -> {
+            R.id.nav_usuarios -> {
                 Toast.makeText(this, "Usuarios (pendiente)", Toast.LENGTH_SHORT).show()
                 return false
             }

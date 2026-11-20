@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Barra inferior del administrador: Reservas y Usuarios (Christian), Cancelaciones (Nathan) -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menuReservas"
+        android:id="@+id/nav_reservas"
         android:icon="@drawable/ic_calendario"
         android:title="@string/menuReservas" />
     <item
-        android:id="@+id/menuUsuarios"
+        android:id="@+id/nav_usuarios"
         android:icon="@drawable/ic_personas"
         android:title="@string/menuUsuarios" />
     <item
-        android:id="@+id/menuCancelaciones"
+        android:id="@+id/nav_cancelaciones"
         android:icon="@drawable/ic_cancelar"
         android:title="@string/menuCancelaciones" />
 </menu>
