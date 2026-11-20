@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Angel: textos de Iniciar sesion, Crear cuenta y Recuperar cuenta -->
+<resources>
+    <!-- A01 Iniciar sesion -->
+    <string name="txtTituloLogin">Iniciar sesión</string>
+    <string name="txtBienvenida">Te damos la <b>bienvenida</b></string>
+    <string name="txtSubBienvenida">Inicia sesión con tu cuenta de VITÁN</string>
+    <string name="lblCorreo">Correo electrónico</string>
+    <string name="lblContrasena">Contraseña</string>
+    <string name="txtOlvidaste">¿Olvidaste tu contraseña?</string>
+    <string name="btnIniciarSesion">Iniciar sesión</string>
+    <string name="txtNoTienesCuenta">¿No tienes cuenta? <b>Crear cuenta</b></string>
+    <string name="txtAvisoLogin">Según tu cuenta entras a las salas (cliente o empresa) o a la consulta del administrador.</string>
+    <string name="txtLogo">Logo de VITÁN</string>
+    <string name="txtRegresar">Regresar</string>
+    <string name="phCorreo">nombre@correo.com</string>
+    <string name="phContrasena">Tu contraseña</string>
+
+    <!-- A02 Crear cuenta -->
+    <string name="txtTituloRegistro">Crear cuenta</string>
+    <string name="lblTipoCuenta">Tipo de cuenta</string>
+    <string name="rbCliente">Cliente</string>
+    <string name="rbEmpresa">Empresa</string>
+    <string name="txtAvisoEmpresa">Con Empresa, los apellidos se desactivan</string>
+    <string name="lblNombre">Nombre</string>
+    <string name="lblAp">Apellido paterno</string>
+    <string name="lblAm">Apellido materno</string>
+    <string name="lblTelefono">Teléfono (10 dígitos)</string>
+    <string name="lblContrasenaMin">Contraseña (mínimo 8 caracteres)</string>
+    <string name="lblPregunta">Pregunta de seguridad</string>
+    <string name="lblRespuesta">Respuesta</string>
+    <string name="txtAyudaRespuesta">Te la preguntaremos si olvidas tu contraseña</string>
+    <string name="btnCrearCuenta">Crear cuenta</string>
+    <string name="lblNombreEmpresa">Nombre de la empresa</string>
+    <string name="phNombre">Ej. Mariana</string>
+    <string name="phAp">Hernández</string>
+    <string name="phAm">Cruz</string>
+    <string name="phNoAplica">No aplica</string>
+    <string name="phTelefono">771 123 4567</string>
+    <string name="phRespuesta">Tu respuesta</string>
+
+    <!-- A03 Recuperar cuenta -->
+    <string name="txtTituloRecuperar">Recuperar cuenta</string>
+    <string name="txtOlvidasteTitulo">¿Olvidaste tu <b>contraseña</b>?</string>
+    <string name="txtInstrucciones">Escribe el correo de tu cuenta y te mostraremos tu pregunta de seguridad.</string>
+    <string name="btnBuscar">Continuar</string>
+    <string name="lblTuPregunta">Tu pregunta de seguridad</string>
+    <string name="lblNueva">Contraseña nueva</string>
+    <string name="lblConfirmar">Confirmar contraseña</string>
+    <string name="btnCambiarContrasena">Cambiar contraseña</string>
+    <string name="txtYaRecordaste">¿Ya la recordaste? <b>Iniciar sesión</b></string>
+
+    <!-- Lista fija de preguntas (la web usa la misma en constantes.php) -->
+    <string-array name="preguntasSeguridad">
+        <item>¿Cuál es el nombre de tu primera mascota?</item>
+        <item>¿En qué ciudad naciste?</item>
+        <item>¿Cómo se llamaba tu escuela primaria?</item>
+        <item>¿Cuál es tu comida favorita?</item>
+    </string-array>
+</resources>
