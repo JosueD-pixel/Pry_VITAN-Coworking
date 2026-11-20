@@ -11,5 +11,7 @@ data class RegistroRequest(
     @SerialName("am") val am: String = "",
     @SerialName("correo") val correo: String = "",
     @SerialName("telefono") val telefono: String = "",
-    @SerialName("contrasena") val contrasena: String = ""
+    @SerialName("contrasena") val contrasena: String = "",
+    @SerialName("pregunta_seguridad") val pregunta_seguridad: String = "",
+    @SerialName("respuesta_seguridad") val respuesta_seguridad: String = ""
 )

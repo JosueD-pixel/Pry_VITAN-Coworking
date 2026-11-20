@@ -6,7 +6,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 
-object RetrofitCliente {
+object RetrofitCliente{
     const val BASE_URL = "https://vitancoworking.grupoc.io/vitan_apis/"
 
     private val jsonConfig = Json {
