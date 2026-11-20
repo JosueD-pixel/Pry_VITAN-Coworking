@@ -28,6 +28,15 @@
             android:name=".Vista.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+        <!-- Administrador: D01 Reservas y D02 Usuarios -->
+        <activity
+            android:name=".Vista.AdminReservasActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Vista.AdminUsuariosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

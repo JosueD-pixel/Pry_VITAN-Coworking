@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Colores de D01 Reservas y D02 Usuarios (tomados del mockup).
+     Van en un archivo propio para no chocar con colors.xml del equipo. -->
+<resources>
+    <color name="admin_azul_marino">#1E2B58</color>
+    <color name="admin_azul_logo">#15204A</color>
+    <color name="admin_texto_secundario">#4A5578</color>
+    <color name="admin_gris_inactivo">#8A93AD</color>
+    <color name="admin_borde_tarjeta">#E2E5EE</color>
+    <color name="admin_borde_chip">#D5D9E4</color>
+    <color name="admin_fondo_pantalla">#F3F4F8</color>
+    <color name="admin_indicador_barra">#DFE4F5</color>
+    <color name="admin_estrella">#E8A317</color>
+
+    <!-- Etiqueta de estado de la reserva: fondo y texto -->
+    <color name="admin_pendiente_fondo">#FCEBD0</color>
+    <color name="admin_pendiente_texto">#9A5B00</color>
+    <color name="admin_confirmada_fondo">#DDF3E6</color>
+    <color name="admin_confirmada_texto">#1E7A45</color>
+    <color name="admin_finalizada_fondo">#E3E7F5</color>
+    <color name="admin_finalizada_texto">#2B3A67</color>
+    <color name="admin_cancelada_fondo">#FBE0E0</color>
+    <color name="admin_cancelada_texto">#B42318</color>
+
+    <!-- Etiqueta del rol del usuario -->
+    <color name="admin_rol_fondo">#DDE1EA</color>
+</resources>
