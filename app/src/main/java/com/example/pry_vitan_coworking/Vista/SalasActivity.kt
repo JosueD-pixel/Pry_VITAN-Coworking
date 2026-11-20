@@ -11,7 +11,9 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pry_vitan_coworking.Adaptador.clsSalasAdaptador
@@ -32,11 +34,17 @@ class SalasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_salas)
+        //Encabezado azul hasta arriba (detras de la hora y bateria), igual que Christian
+        val tbBarra: View = findViewById(R.id.tbBarra)
+        val paddingSuperior = tbBarra.paddingTop
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
+            tbBarra.updatePadding(top = paddingSuperior + systemBars.top)
             insets
         }
+        //Hora y bateria en blanco para que se vean sobre el azul
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
         //enlazar componentes XML
         spnTiposSala = findViewById(R.id.spnTiposSala)
         rvSalas = findViewById(R.id.rvSalas)

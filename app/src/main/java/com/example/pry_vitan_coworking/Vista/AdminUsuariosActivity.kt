@@ -124,10 +124,8 @@ class AdminUsuariosActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_cancelaciones -> {
-                    // D03 Cancelaciones es de Nathan: cuando exista su Activity,
-                    // aquí va abrirPestana(SuActivity::class.java)
-                    Toast.makeText(this, "Cancelaciones todavía no está disponible", Toast.LENGTH_SHORT).show()
-                    false
+                    abrirPestana(CancelacionesActivity::class.java)
+                    true
                 }
                 else -> false
             }

@@ -1,5 +1,6 @@
 package com.example.pry_vitan_coworking.Vista
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -9,7 +10,9 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pry_vitan_coworking.Adaptador.clsCancelacionesAdaptador
@@ -31,11 +34,17 @@ class CancelacionesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_cancelaciones)
+        //Encabezado azul hasta arriba (detras de la hora y bateria), igual que Christian
+        val tbBarra: View = findViewById(R.id.tbBarra)
+        val paddingSuperior = tbBarra.paddingTop
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            v.setPadding(systemBars.left, 0, systemBars.right, 0)
+            tbBarra.updatePadding(top = paddingSuperior + systemBars.top)
             insets
         }
+        //Hora y bateria en blanco para que se vean sobre el azul
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
         //enlazar componentes XML
         rvCancelaciones = findViewById(R.id.rvCancelaciones)
         txtSinCancelaciones = findViewById(R.id.txtSinCancelaciones)
@@ -73,19 +82,21 @@ class CancelacionesActivity : AppCompatActivity() {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
     }
 
-    //pendiente abrir Reservas y Usuarios cuando existan
+    //Barra inferior: abre Reservas (D01) o Usuarios (D02) de Christian; Cancelaciones ya es esta pantalla
     fun ejecutarCambiarPestana(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_reservas -> {
-                Toast.makeText(this, "Reservas (pendiente)", Toast.LENGTH_SHORT).show()
-                return false
-            }
-            R.id.nav_usuarios -> {
-                Toast.makeText(this, "Usuarios (pendiente)", Toast.LENGTH_SHORT).show()
-                return false
-            }
+            R.id.nav_reservas -> abrirPestana(AdminReservasActivity::class.java)
+            R.id.nav_usuarios -> abrirPestana(AdminUsuariosActivity::class.java)
         }
         return true
+    }
+
+    //Cambia de pestana sin animacion y cierra esta pantalla para que no se acumulen (igual que Christian)
+    private fun abrirPestana(pantalla: Class<*>) {
+        val intent = Intent(this, pantalla)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        startActivity(intent)
+        finish()
     }
 
     //pendiente borrar la sesion guardada y regresar al login
