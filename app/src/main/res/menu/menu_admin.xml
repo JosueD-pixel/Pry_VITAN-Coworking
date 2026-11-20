@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuReservas"
+        android:icon="@drawable/ic_calendario"
+        android:title="@string/menuReservas" />
+    <item
+        android:id="@+id/menuUsuarios"
+        android:icon="@drawable/ic_personas"
+        android:title="@string/menuUsuarios" />
+    <item
+        android:id="@+id/menuCancelaciones"
+        android:icon="@drawable/ic_cancelar"
+        android:title="@string/menuCancelaciones" />
+</menu>
