@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Barra inferior del administrador (BottomNavigationView): Reservas, Usuarios y Cancelaciones.
-     Reservas (D01) y Usuarios (D02) son de Christian; Cancelaciones (D03) es de Nathan,
-     así que este menú lo usan las tres pantallas del administrador. -->
+<!-- Barra inferior del administrador: Reservas y Usuarios (Christian), Cancelaciones (Nathan) -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_reservas"
-        android:icon="@drawable/ic_admin_calendario"
-        android:title="Reservas" />
+        android:icon="@drawable/ic_calendario"
+        android:title="@string/menuReservas" />
     <item
         android:id="@+id/nav_usuarios"
-        android:icon="@drawable/ic_admin_usuarios"
-        android:title="Usuarios" />
+        android:icon="@drawable/ic_personas"
+        android:title="@string/menuUsuarios" />
     <item
         android:id="@+id/nav_cancelaciones"
-        android:icon="@drawable/ic_admin_cancelar"
-        android:title="Cancelaciones" />
+        android:icon="@drawable/ic_cancelar"
+        android:title="@string/menuCancelaciones" />
 </menu>
