@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Christian · D02 Usuarios: tarjeta de un usuario
+     (avatar)  Mariana Hernández Cruz ☆
+               cliente@vitan.mx · 771 123 4567
+               [Cliente] -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/admin_borde_tarjeta"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_admin_avatar"
+            android:contentDescription="Usuario"
+            android:padding="14dp"
+            android:src="@drawable/ic_admin_persona"
+            app:tint="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/admin_azul_marino"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="Mariana Hernández Cruz" />
+
+                <ImageView
+                    android:id="@+id/imgFavorito"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="6dp"
+                    android:contentDescription="Favorito"
+                    android:src="@drawable/ic_admin_estrella"
+                    android:visibility="gone"
+                    app:tint="@color/admin_estrella"
+                    tools:visibility="visible" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtContacto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/admin_texto_secundario"
+                android:textSize="14sp"
+                tools:text="cliente@vitan.mx · 771 123 4567" />
+
+            <TextView
+                android:id="@+id/txtRol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_admin_etiqueta"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:backgroundTint="@color/admin_rol_fondo"
+                tools:text="Cliente"
+                tools:textColor="@color/admin_azul_marino" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
