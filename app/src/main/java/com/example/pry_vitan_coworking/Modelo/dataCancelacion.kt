@@ -11,5 +11,7 @@ data class dataCancelacion(
     @SerialName("penalizacion") val penalizacion: Double = 0.0,
     @SerialName("sala") val sala: String = "",
     @SerialName("cliente") val cliente: String = "",
-    @SerialName("fecha") val fecha: String = ""
+    @SerialName("fecha") val fecha: String = "",
+    @SerialName("hora_inicio") val hora_inicio: String = "",
+    @SerialName("hora_fin") val hora_fin: String = ""
 )

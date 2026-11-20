@@ -10,8 +10,11 @@ data class dataSala(
     @SerialName("tipo") val tipo: String = "",
     @SerialName("nombre") val nombre: String = "",
     @SerialName("capacidad") val capacidad: Int = 0,
+    @SerialName("descripcion") val descripcion: String = "",
     @SerialName("precio_hora") val precio_hora: Double = 0.0,
     @SerialName("precio_dia") val precio_dia: Double = 0.0,
     @SerialName("imagen") val imagen: String = "",
-    @SerialName("descuento") val descuento: Double = 0.0
+    @SerialName("descuento") val descuento: Double = 0.0,
+    @SerialName("fecha_fin") val fecha_fin: String = "",
+    @SerialName("promocion") val promocion: dataPromocion? = null
 )

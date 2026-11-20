@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Nathan: colores VITAN (mockups) -->
+    <color name="azulOscuro">#1F2B57</color>
+    <color name="azulPrincipal">#4361C2</color>
+    <color name="fondoApp">#F4F6FA</color>
+    <color name="textoOscuro">#1F2B57</color>
+    <color name="textoGris">#5F6B7A</color>
+    <color name="bordeCard">#E3E7EF</color>
+    <color name="grisImagen">#C5CBD3</color>
+    <color name="naranjaPromo">#A0620A</color>
+    <color name="fondoPromo">#FDEBD3</color>
+    <color name="rojoCancelada">#C62828</color>
+    <color name="fondoCancelada">#FDE2E2</color>
 </resources>

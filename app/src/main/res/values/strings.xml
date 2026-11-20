@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Pry_VITAN-Coworking</string>
+
+    <!-- Nathan: barra superior -->
+    <string name="txtVitan">VITÁN</string>
+    <string name="txtCoworking">Coworking</string>
+    <string name="btnCerrarSesion">Cerrar sesión</string>
+
+    <!-- Nathan: C01 Salas -->
+    <string name="txtCiudad">HUEJUTLA DE REYES</string>
+    <string name="txtEncuentra">Encuentra tu <b>sala</b></string>
+    <string name="txtHorario">Lunes a domingo · 9:00 a 22:00</string>
+    <string name="txtTipo">Tipo:</string>
+    <string name="txtSinSalas">No hay salas de este tipo</string>
+    <string name="imgSala">Foto de la sala</string>
+    <string name="txtNombreSala">Sala de conferencias</string>
+    <string name="txtTipoCapacidad">Conferencias · 30 personas</string>
+    <string name="txtPromocion">Promoción 20 % hasta el 30/11</string>
+    <string name="txtDescuento">-20 %</string>
+    <string name="txtPrecioHora">$500</string>
+    <string name="txtPorHora">/ hora</string>
+
+    <!-- Nathan: D03 Cancelaciones -->
+    <string name="txtTituloCancelaciones">Cancelaciones</string>
+    <string name="txtSinCancelaciones">No hay cancelaciones registradas</string>
+    <string name="txtReservaSala">#4 · Sala ejecutiva B</string>
+    <string name="txtCancelada">Cancelada</string>
+    <string name="txtCliente">Laura Martínez Reyes</string>
+    <string name="txtFecha">05/11/2026 · 16:00 a 18:00</string>
+    <string name="lblMotivo">Motivo</string>
+    <string name="txtMotivo">Se cambió la fecha</string>
+    <string name="lblPenalizacion">Penalización</string>
+    <string name="txtPenalizacion">$250</string>
+
+    <!-- Nathan: barra inferior del admin (menu_admin) -->
+    <string name="menuReservas">Reservas</string>
+    <string name="menuUsuarios">Usuarios</string>
+    <string name="menuCancelaciones">Cancelaciones</string>
 </resources>
