@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/encabezado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1565C0"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
+
+        <ImageButton
+            android:id="@+id/btnRegresar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Regresar"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Confirmar reserva"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txtMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="#FFEBEE"
+        android:padding="12dp"
+        android:textColor="#B71C1C"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Resumen"
+                        android:textColor="#1565C0"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblSala" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Sala" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtSala" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblFecha" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Día" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtFecha" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblHorario" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Horario" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtHorario" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblTarifa" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Tarifa" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtTarifa" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblSubtotal" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Subtotal" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtSubtotal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/filaDescuento" android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblDescuento" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Promoción" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtDescuento" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:layout_marginTop="12dp" android:background="#CFD8DC" />
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblTotal" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Total" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtTotal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp" android:orientation="horizontal">
+                        <TextView android:id="@+id/lblAnticipo" android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="Anticipo para apartar (50 %)" android:textColor="#546E7A" />
+                        <TextView android:id="@+id/txtAnticipo" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="#263238" android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Motivo de la reserva (opcional)"
+                android:textColor="#263238"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtMotivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@android:drawable/edit_text"
+                android:gravity="top"
+                android:hint="Ej. Junta con clientes, capacitación..."
+                android:inputType="textMultiLine|textCapSentences"
+                android:maxLength="255"
+                android:minLines="3"
+                android:padding="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Tu reserva queda pendiente hasta que pagues el anticipo. Si cancelas con 5 días o más de anticipación no se cobra nada."
+                android:textColor="#78909C"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnConfirmar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="#1565C0"
+        android:text="Confirmar reserva" />
+</LinearLayout>

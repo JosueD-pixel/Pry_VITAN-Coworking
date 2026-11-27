@@ -43,6 +43,16 @@
         <activity
             android:name=".Vista.CancelacionesActivity"
             android:exported="false" />
+
+
+        <!-- Luis Ángel: Detalle de sala y Confirmar reserva -->
+        <activity
+            android:name=".Vista.DetalleSalaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.ConfirmarReservaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

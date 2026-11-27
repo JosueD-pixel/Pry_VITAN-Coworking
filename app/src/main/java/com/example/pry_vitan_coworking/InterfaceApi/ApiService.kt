@@ -11,6 +11,10 @@ import com.example.pry_vitan_coworking.Modelo.RegistroResponse
 
 import com.example.pry_vitan_coworking.Modelo.Cls_Reserva
 import com.example.pry_vitan_coworking.Modelo.Cls_Usuario
+import com.example.pry_vitan_coworking.Modelo.DetalleSalaResponse
+import com.example.pry_vitan_coworking.Modelo.HorariosResponse
+import com.example.pry_vitan_coworking.Modelo.ReservarRequest
+import com.example.pry_vitan_coworking.Modelo.ReservarResponse
 
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -52,4 +56,17 @@ interface ApiService {
     //D02 Usuarios: id_rol = 1 administrador, 2 cliente o 3 empresa (0 trae todos)
     @GET("listar_usuarios.php")
     suspend fun listarUsuarios(@Query("id_rol") id_rol: Int): List<Cls_Usuario>
+
+    // Luis Ángel - Detalle de sala y reservar
+    @GET("detalle_sala.php")
+    suspend fun detalleSala(@Query("id_sala") idSala: Int): DetalleSalaResponse
+
+    @GET("horarios_disponibles.php")
+    suspend fun horariosDisponibles(
+        @Query("id_sala") idSala: Int,
+        @Query("fecha") fecha: String
+    ): HorariosResponse
+
+    @POST("reservar.php")
+    suspend fun reservar(@Body datos: ReservarRequest): ReservarResponse
 }
